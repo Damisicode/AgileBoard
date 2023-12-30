@@ -18,24 +18,18 @@ Follow these simple steps to set up AgileBoard on your local machine:
    git clone https://github.com/your-username/agileboard.git
    ```
 
-2. **Install dependencies:**
+2. **Install docker and docker-compose:**
+   ```
+   sudo apt-get update
+   sudo apt install docker.io && docker-compose
+   ```
+   You can also visit [https://docs.docker.com/engine/install/](https://docs.docker.com/engine/install/) to Install the docker engine or install the docker desktop incase you experience any issue with the command above
+
+3. **Run docker-compose to install the dependencies and build the application:**
    ```
    cd agileboard
-   npm install
-   ```
-
-3. **Create a Firebase project:**
-   - Go to [Firebase Console](https://console.firebase.google.com/).
-   - Create a new project and note down the Firebase configuration (apiKey, authDomain, projectId, etc.).
-
-4. **Add Firebase Config:**
-   - Create a `config` folder in the root directory of the project.
-   - Inside the `config` folder, create a `firebaseConfig.js` file.
-   - Copy the Firebase configuration you obtained earlier into the `firebaseConfig.js` file.
-
-5. **Start the development server:**
-   ```
-   npm run dev
+   docker-compose up -d --build
+   docker-compose exec backend python manage.py migrate
    ```
 
 6. **Open the app in your browser:**
