@@ -25,6 +25,15 @@ Follow these simple steps to set up AgileBoard on your local machine:
    ```
    You can also visit [https://docs.docker.com/engine/install/](https://docs.docker.com/engine/install/) to Install the docker engine or install the docker desktop incase you experience any issue with the command above
 
+3. **Generate a secret key from [djecrety.ir](djecrety)**
+
+4. **Set environmental variables:**
+   ```
+   export SECRET_KEY=<YOUR SECRET KEY>
+   export POSTGRES_DB=<YOUR POSTGRESQL DATABASE PORT>
+   export POSTGRES_PASSWORD=<YOUR POSTGRESQL PASSWORD>
+   ```
+
 3. **Run docker-compose to install the dependencies and build the application:**
    ```
    cd agileboard
