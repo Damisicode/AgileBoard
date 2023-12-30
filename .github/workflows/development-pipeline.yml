@@ -26,6 +26,16 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r backend/requirements.txt
 
+    - name: Fix Dependencies issues
+      run: |
+        sed -i '1 s/from django.conf.urls import url/from django.urls import re_path as url/g' /usr/local/lib/python3.11/site-packages/rest_auth/urls.py
+        sed -i '9 s/ugettext_lazy/gettext_lazy/g' /usr/local/lib/python3.11/site-packages/rest_auth/views.py 
+        sed -i '6 s/ugettext_lazy/gettext_lazy/g' /usr/local/lib/python3.11/site-packages/rest_auth/serializers.py
+        sed -i '7 s/force_text/force_str/g' /usr/local/lib/python3.11/site-packages/rest_auth/serializers.py
+        sed -i '2 s/from django.conf.urls import url/from django.urls import re_path as url/g' /usr/local/lib/python3.11/site-packages/rest_auth/registration/urls.py
+        sed -i '3 s/ugettext_lazy/gettext_lazy/g' /usr/local/lib/python3.11/site-packages/rest_auth/registration/views.py
+        sed -i '2 s/ugettext_lazy/gettext_lazy/g' /usr/local/lib/python3.11/site-packages/rest_auth/registration/serializers.py
+
     - name: Run Tests
       run: |
         python backend/manage.py test
