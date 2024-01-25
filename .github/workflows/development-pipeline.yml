@@ -65,5 +65,5 @@ jobs:
 
     - name: Run Database Migrations
       run: |
-        docker build -t backend -f ./Dockerfile
+        docker build -t backend .
         docker run --rm -e DATABASE_URL=postgres://${{ secrets.POSTGRES_USER }}:${{ secrets.POSTGRES_PASSWORD }}@localhost:5432/${{ secrets.POSTGRES_DB }} backend python backend/manage.py migrate
