@@ -32,6 +32,7 @@ Follow these simple steps to set up AgileBoard on your local machine:
    export SECRET_KEY=<YOUR SECRET KEY>
    export POSTGRES_DB=<YOUR POSTGRESQL DATABASE PORT>
    export POSTGRES_PASSWORD=<YOUR POSTGRESQL PASSWORD>
+   export ENVIRONMENT='development'
    ```
 
 3. **Run docker-compose to install the dependencies and build the application:**
