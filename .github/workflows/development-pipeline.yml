@@ -16,9 +16,9 @@ jobs:
       postgres:
         image: postgres:latest
         env:
-          POSTGRES_DB: db  # ${{ secrets.POSTGRES_DB }}
-          POSTGRES_USER: postgres  # ${{ secrets.POSTGRES_USER }}
-          POSTGRES_PASSWORD: postgres  # ${{ secrets.POSTGRES_PASSWORD }}
+          POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
+          POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
         ports:
           - 5432:5432
         # needed because the postgres container does not provide a healthcheck
