@@ -22,6 +22,9 @@ Follow these simple steps to set up AgileBoard on your local machine:
    ```
    sudo apt-get update
    sudo apt install docker.io && docker-compose
+   sudo usermod -aG docker $USER   # Give your user the permission to use docker
+   sudo rm -fr /var/run/docker.sock
+   sudo reboot   # This will reboot your system to configure the settings
    ```
    You can also visit [https://docs.docker.com/engine/install/](https://docs.docker.com/engine/install/) to Install the docker engine or install the docker desktop incase you experience any issue with the command above
 
