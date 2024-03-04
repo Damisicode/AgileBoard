@@ -31,9 +31,3 @@ class IsBoardAdminOrReadOnly(permissions.BasePermission):
             return True
         
         return False
-
-    # def has_object_permission(self, request, view, obj):
-    #     if request.method in permissions.SAFE_METHODS:
-    #         # Allow read-only permissions for all users (GET, HEAD, OPTIONs)
-    #         return True
-    #     return IsBoardAdmin().has_object_permission(request, view, obj)

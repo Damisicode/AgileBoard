@@ -45,8 +45,8 @@ Follow these simple steps to set up AgileBoard on your local machine:
    docker-compose exec backend python manage.py migrate
    ```
 
-6. **Open the app in your browser:**
-   Visit [http://localhost:3000](http://localhost:3000) to see AgileBoard in action!
+6. **Open the API in your browser:**
+   Visit [http://localhost:8000/swagger-docs](http://localhost:8000/swagger-docs) to see AgileBoard in action!
 
 
 ## License 📝

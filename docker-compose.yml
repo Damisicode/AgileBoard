@@ -2,9 +2,11 @@ version: '3.7'
 
 services:
   backend:
+    env_file:
+     - .env
     environment:
-      - ENVIRONMENT=$ENVIRONMENT
-        SECRET_KEY=$SECRET_KEY
+      - ENVIRONMENT=development
+      - SECRET_KEY=''  # $SECRET_KEY
     build: ./backend
     command: python3 /code/backend/manage.py runserver 0.0.0.0:8000
     volumes:
@@ -20,11 +22,5 @@ services:
       POSTGRES_PASSWORD: $POSTGRES_PASSWORD
     volumes:
       - postgres_data:/var/lib/postgresql/data
-  # frontend:
-  #   build: frontend/
-  #   ports:
-  #     - 80:80
-  #   depends_on:
-  #     - backend
 volumes:
   postgres_data:

@@ -28,6 +28,10 @@ class UserViewSet(viewsets.ViewSet):
         user = get_object_or_404(queryset, id=pk)
         serializer = UserSerializer(user, context={'request': request})
         return Response(serializer.data)
+    
+
+    class Meta:
+        fields = ['id', 'username', 'email']
 
 
 class BoardListCreateAPIView(generics.ListCreateAPIView):
@@ -37,7 +41,7 @@ class BoardListCreateAPIView(generics.ListCreateAPIView):
 
     queryset = Board.objects.all()
     serializer_class = BoardSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, IsBoardMember]
 
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data, context={'request': request})
@@ -61,7 +65,7 @@ class BoardRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
 
     queryset = Board.objects.all()
     serializer_class = BoardSerializer
-    permission_classes = [IsAuthenticated, IsBoardAdminOrReadOnly]
+    permission_classes = [IsAuthenticated, IsBoardMember]
 
     def delete(self, request, *args, **kwargs):
         instance = self.get_object()
@@ -179,7 +183,7 @@ class StageDetailView(generics.RetrieveUpdateDestroyAPIView):
 
     queryset = Stage.objects.all()
     serializer_class = StageSerializer
-    permission_classes = [IsAuthenticated, IsBoardAdminOrReadOnly]
+    permission_classes = [IsAuthenticated, IsBoardMember]
 
     def delete(self, request, *args, **kwargs):
         instance = self.get_object()
@@ -199,7 +203,7 @@ class StageListView(generics.ListCreateAPIView):
 
     queryset = Stage.objects.all()
     serializer_class = StageSerializer
-    permission_classes = [IsAuthenticated, IsBoardAdminOrReadOnly]
+    permission_classes = [IsAuthenticated, IsBoardMember]
 
     def get_queryset(self):
         """ Function to get the filter stages for a particular board """
@@ -216,7 +220,7 @@ class TaskDetailView(generics.RetrieveUpdateDestroyAPIView):
 
     queryset = Task.objects.all()
     serializer_class = TaskSerializer
-    permission_classes = [IsAuthenticated, IsBoardAdminOrReadOnly]
+    permission_classes = [IsAuthenticated, IsBoardMember]
     lookup_field = 'id'
 
     def delete(self, request, *args, **kwargs):
@@ -240,7 +244,7 @@ class TaskListView(generics.ListCreateAPIView):
 
     queryset = Task.objects.all()
     serializer_class = TaskSerializer
-    permission_classes = [IsAuthenticated, IsBoardAdminOrReadOnly]
+    permission_classes = [IsAuthenticated, IsBoardMember]
 
     def get_queryset(self):
         """ Function to filter tasks for a particular Stage """
@@ -260,7 +264,7 @@ class AssignTaskToUserAPIView(generics.UpdateAPIView):
 
     queryset = Task.objects.all()
     serializer_class = TaskSerializer
-    permission_classes = [IsAuthenticated, IsBoardAdminOrReadOnly]
+    permission_classes = [IsAuthenticated, IsBoardAdmin]
     lookup_field = 'id'
 
     def update(self, request, *args, **kwargs):
@@ -283,7 +287,7 @@ class SubTaskDetailView(generics.RetrieveUpdateDestroyAPIView):
 
     queryset = SubTask.objects.all()
     serializer_class = SubTaskSerializer
-    permission_classes = [IsAuthenticated, IsBoardAdminOrReadOnly]
+    permission_classes = [IsAuthenticated, IsBoardMember]
     lookup_field = 'id'
 
     def get_board(self):
@@ -297,7 +301,7 @@ class SubTaskListView(generics.ListCreateAPIView):
 
     queryset = SubTask.objects.all()
     serializer_class = SubTaskSerializer
-    permission_classes = [IsAuthenticated, IsBoardAdminOrReadOnly]
+    permission_classes = [IsAuthenticated, IsBoardMember]
 
     def get_queryset(self):
         """ Function to filter tasks for a particular Stage """
@@ -317,7 +321,7 @@ class AssignSubTaskToUserAPIView(generics.UpdateAPIView):
     
     queryset = Task.objects.all()
     serializer_class = SubTaskSerializer
-    permission_classes = [IsAuthenticated, IsBoardAdminOrReadOnly]
+    permission_classes = [IsAuthenticated, IsBoardAdmin]
     lookup_field = 'id'
 
     def update(self, request, *args, **kwargs):
@@ -338,7 +342,7 @@ class ChangeTaskStageView(APIView):
     APIView to change the stage of the tasks
     """
     
-    permission_classes = [IsAuthenticated, IsBoardAdminOrReadOnly]
+    permission_classes = [IsAuthenticated, IsBoardAdmin]
 
     def put(self, request, task_id, new_stage_id):
         try:
