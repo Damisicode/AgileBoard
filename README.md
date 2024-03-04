@@ -32,21 +32,26 @@ Follow these simple steps to set up AgileBoard on your local machine:
 
 4. **Set environmental variables:**
    ```
-   export SECRET_KEY=<YOUR SECRET KEY>
-   export POSTGRES_DB=<YOUR POSTGRESQL DATABASE PORT>
-   export POSTGRES_PASSWORD=<YOUR POSTGRESQL PASSWORD>
-   export ENVIRONMENT='development'
+   SECRET_KEY=<YOUR SECRET KEY>
+   POSTGRES_DB=<YOUR POSTGRESQL DATABASE PORT>
+   POSTGRES_PASSWORD=<YOUR POSTGRESQL PASSWORD>
+   ENVIRONMENT='development'
    ```
 
 3. **Run docker-compose to install the dependencies and build the application:**
    ```
    cd agileboard
    docker-compose up -d --build
-   docker-compose exec backend python manage.py migrate
+   docker-compose exec backend python backend/manage.py migrate
+   ```
+
+4. **Create Super User to access the API:**
+   ```
+   docker-compose exec backend python backend/manage.py createsuperuser
    ```
 
 6. **Open the API in your browser:**
-   Visit [http://localhost:8000/swagger-docs](http://localhost:8000/swagger-docs) to see AgileBoard in action!
+   Visit [http://localhost:8000/swagger-docs](http://localhost:8000/swagger-docs) to access the AgileBoard API in action!
 
 
 ## License 📝
