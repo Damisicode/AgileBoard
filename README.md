@@ -15,7 +15,7 @@ Follow these simple steps to set up AgileBoard on your local machine:
 
 1. **Clone the repository:**
    ```
-   git clone https://github.com/your-username/agileboard.git
+   [git clone https://github.com/your-username/agileboard.git](https://github.com/Damisicode/AgileBoard.git)
    ```
 
 2. **Install docker and docker-compose:**
