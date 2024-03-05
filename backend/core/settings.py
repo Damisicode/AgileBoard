@@ -203,7 +203,7 @@ STATICFILES_FINDERS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-ENVIRONMENT = os.environ.get('ENVIRONMENT', default='development')
+ENVIRONMENT = env('ENVIRONMENT', default='development')
 
 SWAGGER_SETTINGS = {
     'LOGIN_URL': 'rest_framework:login',
