@@ -142,6 +142,7 @@ DATABASES = {
 }
 
 if os.environ.get('GITHUB_WORKFLOW'):
+    print("DEBUG: Using Workflow Database")
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
