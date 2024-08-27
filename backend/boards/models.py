@@ -41,6 +41,7 @@ class Task(models.Model):
     """ Task Model for creating tasks """
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)     # UUID field for primary key field
+    title = models.CharField()
     assignees = models.ManyToManyField(get_user_model(), related_name='assigned_tasks', blank=True)
     description = models.TextField()     # Description of task
     createdat = models.DateTimeField(auto_now_add=True)     # Created date

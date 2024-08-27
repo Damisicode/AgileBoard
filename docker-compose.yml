@@ -1,9 +1,9 @@
-version: '3.7'
+version: "3.7"
 
 services:
   backend:
     env_file:
-     - .env
+      - .env
     environment:
       - ENVIRONMENT=$ENVIRONMENT
       - SECRET_KEY=$SECRET_KEY
