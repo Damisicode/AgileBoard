@@ -47,7 +47,7 @@ class Task(models.Model):
     createdat = models.DateTimeField(auto_now_add=True)     # Created date
     updatedat = models.DateTimeField(auto_now=True)     # Date updated
     targetcompletiondate = models.DateTimeField()       # Target Completion Date
-    stage = models.ForeignKey(Stage, on_delete=models.CASCADE, related_name='Tasks')
+    stage = models.ForeignKey(Stage, on_delete=models.CASCADE, related_name='tasks')
     order = models.PositiveIntegerField(default=0)
 
     def __str__(self):

@@ -63,7 +63,7 @@ class StageSerializer(serializers.HyperlinkedModelSerializer):
     tasks = TaskSerializer(many=True, read_only=True)
     class Meta:
         model = Stage
-        fields = ['name', 'url', 'createdat', 'updatedat', 'board', 'tasks', 'order']
+        fields = ['id', 'name', 'url', 'createdat', 'updatedat', 'board', 'tasks', 'order']
         read_only_fields = ['board']
 
     def create(self, validated_data):
@@ -122,6 +122,7 @@ class BoardSerializer(serializers.HyperlinkedModelSerializer):
         # Set the admins using the set() method
         if creator:
             board.admins.set([creator])
+            board.members.set([creator])
 
         stage_serializer = StageSerializer(data=stages_data, many=True, context={'board': board})
         stage_serializer.is_valid(raise_exception=True)

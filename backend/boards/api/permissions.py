@@ -10,6 +10,11 @@ class IsBoardMember(permissions.BasePermission):
         return request.user in obj.members.all()
     
 
+class IsStageMember(permissions.BasePermission):
+    def has_object_permission(self, request, view, obj):
+        return request.user in obj.board.members.all()
+    
+
 class IsBoardAdminOrReadOnly(permissions.BasePermission):
     def has_permission(self, request, view):
         # Allow GET, HEAD, and OPTIONS requests for all users

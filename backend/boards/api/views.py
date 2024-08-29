@@ -6,7 +6,7 @@ from rest_framework.response import Response
 from rest_framework import generics, status
 from ..models import Board, Stage, Task, SubTask
 from rest_framework.permissions import IsAuthenticated
-from .permissions import IsBoardAdminOrReadOnly, IsBoardAdmin, IsBoardMember
+from .permissions import IsBoardAdminOrReadOnly, IsBoardAdmin, IsBoardMember, IsStageMember
 from rest_framework.views import APIView
 
 
@@ -183,7 +183,7 @@ class StageDetailView(generics.RetrieveUpdateDestroyAPIView):
 
     queryset = Stage.objects.all()
     serializer_class = StageSerializer
-    permission_classes = [IsAuthenticated, IsBoardMember]
+    permission_classes = [IsAuthenticated, IsStageMember]
 
     def delete(self, request, *args, **kwargs):
         instance = self.get_object()
